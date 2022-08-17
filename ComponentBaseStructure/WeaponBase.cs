@@ -38,8 +38,16 @@ namespace ComponentBaseStructure
         #endregion
 
         #region Component Base Structure
-        // Ability Component Implementations
+
+        // 어빌리티 컴포넌트들이 모두 저장되는 딕셔너리
         Dictionary<string, AbilityComponentBase> abilityComponents = new Dictionary<string, AbilityComponentBase>();
+
+        /// <summary>
+        /// 지정한 이름의 어빌리티 컴포넌트를 찾는 함수
+        /// </summary>
+        /// <typeparam name="T">어빌리티의 타입(사실 다르게 구현했다가 수정한 흔적임)</typeparam>
+        /// <param name="AbilityName">어빌리티 명</param>
+        /// <returns></returns>
         public T? GetAbilityComponent<T>(string AbilityName)
         {
             abilityComponents.TryGetValue(AbilityName, out var component);
@@ -66,6 +74,11 @@ namespace ComponentBaseStructure
             }
             return component;
         }
+
+        /// <summary>
+        /// string:string 딕셔너리를 받아서 Weapon의 어빌리티들을 초기화하는 함수
+        /// </summary>
+        /// <param name="keyValuePairs">아이템 DB로부터 뽑아낸 Stat 맵(딕셔너리)</param>
         public void UpdateAbilityFromKeyValuePair(Dictionary<string, string> keyValuePairs)
         {
             foreach (var entry in keyValuePairs)
