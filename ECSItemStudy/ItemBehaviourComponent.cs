@@ -17,12 +17,12 @@ namespace ECSItemStudy
 
     public class BehaviourAmmo : ItemBehaviourComponent
     {
-        AbilityMaxAmmo? maxAmmo;
+        IntAbility? maxAmmo;
         int currentAmmo = 0;
 
         public BehaviourAmmo(WeaponBase baseObject) : base(baseObject)
         {
-            maxAmmo = weaponBase.GetAbilityComponent<AbilityMaxAmmo>();
+            maxAmmo = weaponBase.GetAbilityComponent<IntAbility>("max_ammo");
         }
 
         public int GetRemainingAmmo()
@@ -65,7 +65,7 @@ namespace ECSItemStudy
             // 따로 값을 지정하지 않았다면
             else if(maxAmmo != null)
             {
-                currentAmmo = maxAmmo.value;
+                currentAmmo = maxAmmo.Value;
                 return currentAmmo - prevAmmo;
             }
             else

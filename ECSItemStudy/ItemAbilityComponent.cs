@@ -7,8 +7,24 @@ using System.Threading.Tasks;
 namespace ECSItemStudy
 {
 
-    public class ItemAbilityComponentBase
+    public abstract class AbilityComponentBase
     {
+        public string Name;
+        public void SetAbilityName(string NewName)
+        {
+            Name = NewName;
+        }
+        public string GetAbilityName()
+        {
+            return Name;
+        }
+        public enum AbilityDataType
+        {
+            None,
+            Int,
+            String,
+            Float,
+        }
         public virtual void SetFromTable(string valueString)
         {
             return;
@@ -17,72 +33,38 @@ namespace ECSItemStudy
         {
             return;
         }
-    }
-
-    public class AbilityMaxAmmo : ItemAbilityComponentBase
-    {
-        public int value;
-        public override void SetFromTable(string valueString)
+        public virtual AbilityDataType GetAbilityDataType()
         {
-            value = int.Parse(valueString);
-        }
-        public override void PrintValue()
-        {
-            base.PrintValue();
-            Console.WriteLine($"{GetType()}: {value}");
+            return AbilityDataType.None;
         }
     }
 
-    public class AbilityFireAmmoCount : ItemAbilityComponentBase
+    public class IntAbility : AbilityComponentBase
     {
-        public int value;
+        public int Value;
         public override void SetFromTable(string valueString)
         {
-            value = int.Parse(valueString);
+            Value = int.Parse(valueString);
         }
         public override void PrintValue()
         {
             base.PrintValue();
-            Console.WriteLine($"{GetType()}: {value}");
+            Console.WriteLine($" - {Name}: {Value}");
         }
     }
-    public class AbilityAutoRepeatCount : ItemAbilityComponentBase
+
+    public class StringAbility : AbilityComponentBase
     {
-        public int value;
+        public string Value;
         public override void SetFromTable(string valueString)
         {
-            value = int.Parse(valueString);
+            Value = valueString;
         }
         public override void PrintValue()
         {
             base.PrintValue();
-            Console.WriteLine($"{GetType()}: {value}");
+            Console.WriteLine($" - {Name}: {Value}");
         }
     }
-    public class AbilityCooldown : ItemAbilityComponentBase
-    {
-        public int value;
-        public override void SetFromTable(string valueString)
-        {
-            value = int.Parse(valueString);
-        }
-        public override void PrintValue()
-        {
-            base.PrintValue();
-            Console.WriteLine($"{GetType()}: {value}");
-        }
-    }
-    public class AbilityDamage : ItemAbilityComponentBase
-    {
-        public int value;
-        public override void SetFromTable(string valueString)
-        {
-            value = int.Parse(valueString);
-        }
-        public override void PrintValue()
-        {
-            base.PrintValue();
-            Console.WriteLine($"{GetType()}: {value}");
-        }
-    }
+
 }
