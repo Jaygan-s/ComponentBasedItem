@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ECSItemStudy
+namespace ComponentBaseStructure
 {
     internal class Program
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECSItemStudy
+namespace ComponentBaseStructure
 {
     public class WeaponBase
     {
@@ -93,7 +93,7 @@ namespace ECSItemStudy
         }
 
         // Behaviour Component Implementations
-        Dictionary<Type, ItemBehaviourComponent> behaviourComponents = new Dictionary<Type, ItemBehaviourComponent>();
+        Dictionary<Type, BehaviourComponent> behaviourComponents = new Dictionary<Type, BehaviourComponent>();
         public T? GetBehaviourComponent<T>()
         {
             behaviourComponents.TryGetValue(typeof(T), out var component);
@@ -105,7 +105,7 @@ namespace ECSItemStudy
         protected T AddBehaviourComponent<T>(T component)
         {
             if (component != null)
-                behaviourComponents.Add(component.GetType(), component as ItemBehaviourComponent);
+                behaviourComponents.Add(component.GetType(), component as BehaviourComponent);
             return component;
         }
 

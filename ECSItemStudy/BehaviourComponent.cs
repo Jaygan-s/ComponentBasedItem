@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECSItemStudy
+namespace ComponentBaseStructure
 {
-    public class ItemBehaviourComponent
+    public class BehaviourComponent
     {
         protected WeaponBase weaponBase { get; set; }
-        public ItemBehaviourComponent(WeaponBase weaponBase)
+        public BehaviourComponent(WeaponBase weaponBase)
         {
             this.weaponBase = weaponBase;
         }
     }
 
-    public class BehaviourAmmo : ItemBehaviourComponent
+    public class BehaviourAmmo : BehaviourComponent
     {
         IntAbility? maxAmmo;
         int currentAmmo = 0;
